@@ -3,6 +3,7 @@
 #include <string.h>
 
 unsigned long long int fib_recursion_wrapper( unsigned long long int nth_term, unsigned long long saved_terms[] ) {
+
    /*Recursive Fibonacci*/
    if( nth_term == 0 ) {
       return 0;
@@ -16,7 +17,7 @@ unsigned long long int fib_recursion_wrapper( unsigned long long int nth_term, u
    else {
       saved_terms[nth_term] = fib_recursion_wrapper( nth_term - 1, saved_terms ) + fib_recursion_wrapper( nth_term - 2, saved_terms );
 
-      return saved_terms[nth_term];
+      return saved_terms[ nth_term ];
    }
 
 }
@@ -24,31 +25,22 @@ unsigned long long int fib_recursion_wrapper( unsigned long long int nth_term, u
 
 
 unsigned long long int fib_iterative_wrapper( unsigned long long int nth_term, unsigned long long saved_terms[] ) {
+
    /*Iterative Fibonacci*/
-
-   unsigned long long int previous_a;
-
-   unsigned long long int previous_b = 1;   
-   
-   unsigned long long int current = 0;
-
-   unsigned long long int prev_fib;
-
    if( nth_term == 0 ) { 
       return 0;
    }
    else if( nth_term == 1 ) {
       return 1;
    }
-
-   saved_terms[0] = 0;
-   saved_terms[1] = 1;
-
-   for( int ix = 2; ix < nth_term; ix++ ) {
-      saved_terms[ix] = saved_terms[ ix - 1 ] + saved_terms[ ix - 2 ];
+   else {
+      saved_terms[0] = 0;
+      saved_terms[1] = 1;
+      for( int ix = 1; ix <= nth_term; ix++ ) {
+         saved_terms[ix] = saved_terms[ ix - 1 ] + saved_terms[ ix - 2 ];
+      }
+      return saved_terms[nth_term];
    }
-   
-   return saved_terms[ nth_term ];
 }
 
 
